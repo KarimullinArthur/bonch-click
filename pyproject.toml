@@ -1,0 +1,15 @@
+[project]
+name = "bonch-click"
+version = "0.0.1"
+description = "Кликаем по умному(нет)"
+authors = [
+    { name="OxF331D3A17", email="KarimullinArthur@disroot.org" },
+]
+dependencies = [
+    "bonchapi==0.0.6",
+    "python-dotenv",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
