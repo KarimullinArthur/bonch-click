@@ -4,11 +4,11 @@ from bonchapi import BonchAPI
 
 import database
 
-
 database.create_table()
 database.crud.create_account("yyy", "xxx")
 users = database.crud.get_all_accounts()
 print(users)
+
 
 async def main():
     api = BonchAPI()
