@@ -13,3 +13,48 @@ dependencies = [
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+
+
+[tool.ruff]
+# Какие правила использовать (все популярные и правильные)
+lint.select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort (импорты красиво наводим)
+    "N",    # pep8-naming (нормальные имена переменных)
+    "UP",   # pyupgrade (обновление синтаксиса под новый Python)
+#    "D",    # pydocstyle (доки к функциям и классам)
+    "C90",  # mccabe (сложность функций)
+    "PERF", # ловим неэффективный код
+    "RUF"   # спецправила самого Ruff
+]
+
+# Что отключить (если есть что-то что прям бесит)
+lint.ignore = [
+    "D100", # Нет докстринга в модуле
+    "D101", # Нет докстринга в классе
+    "D102", # Нет докстринга в методе
+    #"E722",
+    #"F401",
+    #"F403",
+]
+
+# Максимальная длина строки (мы же не варвары)
+line-length = 100
+
+# Автоматически сортировать импорты
+fix = true
+
+# На каких версиях питона пишем
+target-version = "py311"
+
+[tool.ruff.format]
+# Форматировать код сразу по PEP8
+quote-style = "double"     # Одинарные кавычки, потому что стильный парень
+indent-style = "space"     # Пробелы вместо табов (прощай, табомания)
+
+[tool.ruff.lint.isort]
+# Кастомизация для импорта
+combine-as-imports = true
+force-single-line = false

@@ -2,29 +2,21 @@ import asyncio
 
 from bonchapi import BonchAPI
 
-from config import config
+import database
 
 
-users = [
-        {
-            "login": config.mail,
-            "password": config.password
-        },
-        {
-            "login": "secret",
-            "password": "ha-ha, secret" 
-        }
-]
-
+database.create_table()
+database.crud.create_account("yyy", "xxx")
+users = database.crud.get_all_accounts()
 print(users)
 
 async def main():
     api = BonchAPI()
     for user in users:
-        print(user["login"])
-        print(user["password"])
+        print(user.email)
+        print(user.password)
         try:
-            await api.login(user["login"], user["password"])
+            await api.login(user.email, user.password)
             await api.click_start_lesson()
         except:
             pass

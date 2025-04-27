@@ -1,47 +1,47 @@
+from datetime import UTC, datetime
 from typing import Annotated
-from datetime import datetime
-from datetime import UTC
 
-from sqlalchemy import URL
-from sqlalchemy.orm import declarative_base
-from sqlalchemy.orm import mapped_column
-from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy import URL, create_engine
+from sqlalchemy.orm import declarative_base, mapped_column, sessionmaker
 
 from config import settings
 
+created_at = Annotated[datetime, mapped_column(default=lambda: datetime.now(UTC))]
 
-created_at = Annotated[datetime, mapped_column(default=datetime.now(UTC))]
 
-
-def get_engine(url: URL | str = settings.database_url) -> AsyncEngine:
-    return create_async_engine(
-        url=url,
+def get_engine(url: URL | str = settings.database_url):
+    return create_engine(
+        url,
         echo=settings.debug,
-        # pool_size=2
+        # pool_size=2  # если нужно ограничить пул
     )
 
 
-def get_sessionmaker(engine: AsyncEngine) -> async_sessionmaker[AsyncSession]:
-    return async_sessionmaker(bind=engine, autoflush=False, expire_on_commit=False)
+def get_sessionmaker(engine):
+    return sessionmaker(
+        bind=engine,
+        autoflush=False,
+        expire_on_commit=False,
+    )
 
 
 engine = get_engine()
-sessionmaker = get_sessionmaker(engine)
-session_factory = async_sessionmaker(engine)
+SessionMaker = get_sessionmaker(engine)
 Base = declarative_base()
 
 
-async def create_table():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+def create_table():
+    # DDL-операции автокоммитятся, сессия не обязательна
+    Base.metadata.create_all(bind=engine)
+    print("Таблицы созданы.")
 
 
-async def drop_table():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
+def drop_table():
+    Base.metadata.drop_all(bind=engine)
+    print("Таблицы удалены.")
 
 
-async def init_models():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
-        await conn.run_sync(Base.metadata.create_all)
+def init_models():
+    Base.metadata.drop_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
+    print("Модели и таблицы инициализированы.")
