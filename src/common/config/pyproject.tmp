@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "common-config"
+version = "0.1.0"
+description = "Common config library for my project"
+authors = [{ name = "nik", email = "nik@email.com" }]
+dependencies = [
+    "pydantic_settings",
+]

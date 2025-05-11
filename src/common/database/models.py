@@ -6,9 +6,8 @@ from .database import Base
 class Account(Base):
     __tablename__ = "account"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
-    email: Mapped[str]
+    email: Mapped[str] = mapped_column(primary_key=True)
     password: Mapped[str]
 
     def __repr__(self) -> str:
-        return f"Address(id={self.id!r}, email_address={self.email!r})"
+        return f"Address(email_address={self.email!r})"

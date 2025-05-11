@@ -1,18 +1,30 @@
 [project]
 name = "bonch-click"
-version = "0.0.1"
-description = "Кликаем по умному(нет)"
+version = "0.1.0"
+description = "Default template for PDM package"
 authors = [
-    { name="OxF331D3A17", email="KarimullinArthur@disroot.org" },
+    {name="OxF331D3A17", email="KarimullinArthur@disroot.org" },
+    {name = "Karimullin Arthur", email = "KarimullinArthur@disroot.org"},
 ]
+#requires-python = ">=3.11"
+requires-python = ">=3.11"
 dependencies = [
     "bonchapi==0.0.6",
-    "python-dotenv",
+    "sqlalchemy==2.0.40",
+    "psycopg2-binary==2.9.10",
+    "pydantic_settings==2.9.1",
+    "python-dotenv==1.1.0",
+    "loguru==0.7.3 ",
+    "fastapi[standard]==0.115.12",
+    "tox>=4.25.0",
 ]
 
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
 
 
 [tool.ruff]
@@ -58,3 +70,17 @@ indent-style = "space"     # Пробелы вместо табов (проща�
 # Кастомизация для импорта
 combine-as-imports = true
 force-single-line = false
+
+[tool.pdm]
+distribution = false
+
+[dependency-groups]
+test = [
+    "pytest>=8.0.0",
+    "tox>=4.25.0",
+    "pytest-asyncio>=0.26.0",
+]
+lint = [
+    "ruff>=0.11.9",
+    "mypy>=1.10.0",
+]

@@ -1,5 +1,31 @@
 name: bonch-click
 services:
+  click:
+    build:
+      context: . 
+      dockerfile: src/click-app/Dockerfile 
+    container_name: click 
+
+    depends_on:
+      - db
+
+    networks:
+      - main-net
+
+  api:
+    build:
+      context: . 
+      dockerfile: src/api/Dockerfile 
+    container_name: api 
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - db
+
+    networks:
+      - main-net
+
   db:
     image: docker.io/library/postgres:15
     restart: always
@@ -11,6 +37,9 @@ services:
       - pg_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
+    networks:
+      - main-net
 
   pgadmin:
     image: docker.io/dpage/pgadmin4:latest
@@ -24,6 +53,11 @@ services:
       - pgadmin_data:/var/lib/pgadmin
     depends_on:
       - db
+
+networks:
+  main-net:
+    driver: bridge
+
 
 volumes:
   pg_data:

@@ -1,6 +1,6 @@
 import asyncio
 
-import database
+from common import database
 
 
 async def main():

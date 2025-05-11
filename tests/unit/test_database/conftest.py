@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 import pytest
 
-import database
+from common import database
 
 
 @pytest.fixture

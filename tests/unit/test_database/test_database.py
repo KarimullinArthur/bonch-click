@@ -1,5 +1,5 @@
-import database.crud as crud
-import database.models as models
+import common.database.crud as crud
+import common.database.models as models
 
 
 def test_create_account(mock_session):
