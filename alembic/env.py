@@ -1,9 +1,9 @@
-from config import settings
 from sqlalchemy import engine_from_config, pool
-
 from alembic import context
+
 from common.database import Base
 from common.database.models import *
+from common.config import settings
 
 target_metadata = Base.metadata
 

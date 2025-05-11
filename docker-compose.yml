@@ -41,6 +41,19 @@ services:
     networks:
       - main-net
 
+  migrator:
+    build:
+      context: .
+      dockerfile: migrator/Dockerfile
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+    command: ["alembic", "upgrade", "head"]  # можно менять при вызове
+
+    networks:
+      - main-net
+
   pgadmin:
     image: docker.io/dpage/pgadmin4:latest
     restart: always

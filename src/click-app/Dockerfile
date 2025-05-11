@@ -23,9 +23,5 @@ RUN pip install --no-cache-dir .
 
 # Теперь копируем код
 COPY . . 
-#COPY ./src/common common
-#COPY ./src/click-app click-app
-#COPY ./src/click-app/cronfile .
-#COPY ./.env .
 
 CMD ["/usr/local/bin/supercronic", "src/click-app/cronfile"]
