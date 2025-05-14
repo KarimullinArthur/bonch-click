@@ -9,10 +9,7 @@ from common.database.models import Account
 
 @pytest_asyncio.fixture
 async def client():
-    async with AsyncClient(
-        base_url="http://test",
-        transport=ASGITransport(app=app)
-    ) as ac:
+    async with AsyncClient(base_url="http://test", transport=ASGITransport(app=app)) as ac:
         yield ac
 
 
@@ -24,9 +21,7 @@ async def test_get_account(client, mock_session):
 
 @pytest.mark.asyncio
 async def test_create_account(client, mock_session):
-    resp = await client.post(
-        "accounts", params={"email": "test@test.com", "password": "password"}
-    )
+    resp = await client.post("accounts", params={"email": "test@test.com", "password": "password"})
     assert resp.status_code == 201
 
 
