@@ -25,6 +25,7 @@ license = {text = "MIT"}
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
+asyncio_default_fixture_loop_scope = "function"
 
 
 [tool.ruff]
@@ -84,3 +85,7 @@ lint = [
     "ruff>=0.11.9",
     "mypy>=1.10.0",
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["F811"]
+

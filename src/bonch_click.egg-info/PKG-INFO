@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: bonch-click
+Version: 0.1.0
+Summary: Default template for PDM package
+Author-email: OxF331D3A17 <KarimullinArthur@disroot.org>, Karimullin Arthur <KarimullinArthur@disroot.org>
+License: MIT
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: bonchapi==0.0.6
+Requires-Dist: sqlalchemy==2.0.40
+Requires-Dist: psycopg2-binary==2.9.10
+Requires-Dist: pydantic_settings==2.9.1
+Requires-Dist: python-dotenv==1.1.0
+Requires-Dist: loguru==0.7.3
+Requires-Dist: fastapi[standard]==0.115.12
+Requires-Dist: tox>=4.25.0
+
+Эта штука работает уже долгое время, но сегодня у меня лёг инет в общаге, и мне написал челик что чёт у тебя не работает.
+Пришло время потрать вечер на ещё одну фигню, вместо того чтобы просто поднять ещё один инстанс на другой тачке.

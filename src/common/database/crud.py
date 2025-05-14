@@ -17,6 +17,23 @@ def get_account(email: str) -> Account | None:
         return result
 
 
+def edit_account(email: str, new_password):
+    with SessionMaker() as session:
+        current_account = get_account(email)
+        if current_account is None:
+            return current_account
+        current_account.password = new_password
+        session.commit()
+        return current_account
+
+
+def delete_account(email: str) -> None:
+    with SessionMaker() as session:
+        target_acc = get_account(email)
+        session.delete(target_acc)
+        session.commit()
+
+
 def get_all_accounts() -> list[Account]:
     with SessionMaker() as session:
         result = session.scalars(select(Account)).all()

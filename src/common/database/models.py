@@ -7,7 +7,7 @@ class Account(Base):
     __tablename__ = "account"
 
     email: Mapped[str] = mapped_column(primary_key=True)
-    password: Mapped[str]
+    password: Mapped[str] = mapped_column(nullable=False)
 
     def __repr__(self) -> str:
         return f"Address(email_address={self.email!r})"

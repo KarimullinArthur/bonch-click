@@ -1,0 +1,8 @@
+bonchapi==0.0.6
+sqlalchemy==2.0.40
+psycopg2-binary==2.9.10
+pydantic_settings==2.9.1
+python-dotenv==1.1.0
+loguru==0.7.3
+fastapi[standard]==0.115.12
+tox>=4.25.0

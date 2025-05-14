@@ -71,7 +71,6 @@ networks:
   main-net:
     driver: bridge
 
-
 volumes:
   pg_data:
   pgadmin_data:
