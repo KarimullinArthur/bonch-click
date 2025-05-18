@@ -7,7 +7,7 @@ from common import database
 
 
 @pytest.fixture
-def mock_session(monkeypatch):
+def mock_session(monkeypatch) -> MagicMock:
     mock_sess = MagicMock()
     mock_sess.scalar.return_value = None
     mock_sess.add.return_value = None

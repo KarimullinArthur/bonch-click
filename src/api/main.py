@@ -3,7 +3,9 @@ from uvicorn import run
 
 from api import routers
 
-app = FastAPI()
+app = FastAPI(
+    title="Bonch Click API",
+)
 app.include_router(routers.main_router)
 
 

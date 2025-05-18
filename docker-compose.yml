@@ -4,7 +4,6 @@ services:
     build:
       context: . 
       dockerfile: src/click-app/Dockerfile 
-    container_name: click 
 
     depends_on:
       - db
@@ -16,7 +15,6 @@ services:
     build:
       context: . 
       dockerfile: src/api/Dockerfile 
-    container_name: api 
     ports:
       - "8000:8000"
 
@@ -25,6 +23,14 @@ services:
 
     networks:
       - main-net
+
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./src/api
+          target: /app/src/api
+        - action: rebuild
+          path: pyproject.toml 
 
   db:
     image: docker.io/library/postgres:15

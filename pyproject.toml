@@ -16,6 +16,7 @@ dependencies = [
     "python-dotenv==1.1.0",
     "loguru==0.7.3 ",
     "fastapi[standard]==0.115.12",
+    "pyjwt",
     "tox>=4.25.0",
 ]
 

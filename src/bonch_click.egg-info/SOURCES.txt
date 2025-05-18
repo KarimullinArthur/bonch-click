@@ -1,9 +1,14 @@
 README.md
 pyproject.toml
 src/__init__.py
+src/api/__init__.py
+src/api/dependencies.py
 src/api/main.py
+src/api/dependencies/__init__.py
+src/api/dependencies/auth.py
 src/api/routers/__init__.py
 src/api/routers/accounts.py
+src/api/routers/auth.py
 src/bonch_click.egg-info/PKG-INFO
 src/bonch_click.egg-info/SOURCES.txt
 src/bonch_click.egg-info/dependency_links.txt
