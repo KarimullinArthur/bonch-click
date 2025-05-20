@@ -1,1 +1,1 @@
-*/5 * * * * * * src/click-app/main.py 
+*/7 * * * * src/click-app/main.py 
