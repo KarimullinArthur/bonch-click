@@ -41,8 +41,6 @@ services:
       POSTGRES_DB: mydatabase
     volumes:
       - pg_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
 
     networks:
       - main-net
@@ -59,19 +57,6 @@ services:
 
     networks:
       - main-net
-
-  pgadmin:
-    image: docker.io/dpage/pgadmin4:latest
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
-    ports:
-      - "5050:80"
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
-    depends_on:
-      - db
 
 networks:
   main-net:
