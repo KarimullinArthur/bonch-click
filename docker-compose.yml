@@ -16,7 +16,7 @@ services:
       context: . 
       dockerfile: src/api/Dockerfile 
     ports:
-      - "8000:8000"
+      - "9000:8000"
 
     depends_on:
       - db
