@@ -11,6 +11,8 @@ services:
     networks:
       - main-net
 
+    restart: unless-stopped
+
   api:
     build:
       context: . 
@@ -24,6 +26,8 @@ services:
     networks:
       - main-net
 
+    restart: unless-stopped
+
     develop:
       watch:
         - action: sync+restart
@@ -34,7 +38,7 @@ services:
 
   db:
     image: docker.io/library/postgres:15
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: secret

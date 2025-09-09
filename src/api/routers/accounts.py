@@ -15,12 +15,16 @@ def create_account(email: str, password: str):
 
 
 @router.get("/accounts")
-def get_account(email: str, response: Response):
-    account = database.get_account(email)
-    if account:
-        return account
+def get_account(email: str | None, response: Response):
+    if email:
+        account = database.get_account(email)
+        if account:
+            return account
 
-    response.status_code = 404
+        response.status_code = 404
+        return {"error": "Account not found"}
+
+    return database.get_all_accounts()
 
 
 @router.delete("/accounts")
